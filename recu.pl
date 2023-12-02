@@ -18,7 +18,7 @@ esSalaDe(fundacionDelMulo, escapepepe).
 %sala(Nombre, Experiencia).
 sala(elPayasoExorcista, terrorifica(100, 18)).
 sala(socorro, terrorifica(20, 12)).
-sala(linternas, familiar(comics, 5)).
+sala(linternas, familiar(comics, 1)).
 sala(guerrasEstelares, familiar(futurista, 7)).
 sala(fundacionDelMulo, enigmatica([combinacionAlfanumerica, deLlave, deBoton])).
 
@@ -76,3 +76,28 @@ tieneSuerte(Persona,Sala):-
 esMacabra(Empresa):-
     esSalaDe(_, Empresa),
     forall(esSalaDe(Sala, Empresa),sala(Sala,terrorifica(_,_))).
+
+%empresaCopada/1: una empresa es copada si no es macabra y el promedio de dificultad de sus salas es menor
+%a 4.
+
+empresaCopada(Empresa):-
+    esSalaDe(_, Empresa),
+    not(esMacabra(Empresa)),
+    promedioDificultades(Empresa,Promedio),
+    Promedio<4.
+
+cantidadDeSalas(Empresa,Cantidad):-
+    esSalaDe(_, Empresa),
+    findall(Sala, esSalaDe(Sala, Empresa), Salas),
+    length(Salas,Cantidad).
+
+cantidadDeDificultad(Empresa,Cantidad):-
+    esSalaDe(_, Empresa),
+    findall(Dificultad, (esSalaDe(Sala, Empresa),nivelDeDificultadDeLaSala(Sala,Dificultad)), Dificultades),
+    sum_list(Dificultades,Cantidad).
+
+promedioDificultades(Empresa,Promedio):-
+    cantidadDeSalas(Empresa,Cantidad),
+    cantidadDeDificultad(Empresa,Dificultad),
+    Promedio is (Dificultad/Cantidad).
+
