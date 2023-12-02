@@ -18,7 +18,7 @@ esSalaDe(fundacionDelMulo, escapepepe).
 %sala(Nombre, Experiencia).
 sala(elPayasoExorcista, terrorifica(100, 18)).
 sala(socorro, terrorifica(20, 12)).
-sala(linternas, familiar(comics, 1)).
+sala(linternas, familiar(comics, 5)).
 sala(guerrasEstelares, familiar(futurista, 7)).
 sala(fundacionDelMulo, enigmatica([combinacionAlfanumerica, deLlave, deBoton])).
 
@@ -51,9 +51,10 @@ claustrofobica(Persona):-
 %puedeSalir/2: una persona puede salir de una sala si no es claustrofóbica y la dificultad de la sala es 1
 
 puedeSalir(Persona,Sala):-
+    persona(Persona,Edad,_),
     not(claustrofobica(Persona)),
     nivelDeDificultadDeLaSala(Sala,Nivel),
-    Nivel<1.
+    Nivel=1.
 
 
 %si tiene más de 13 años y no es claustrofóbica y la dificultad es menor a 5 
@@ -74,8 +75,12 @@ tieneSuerte(Persona,Sala):-
 
 %esMacabra/1: una empresa es macabra si todas sus salas son de experiencia terrorífica.
 esMacabra(Empresa):-
-    esSalaDe(_, Empresa),
-    forall(esSalaDe(Sala, Empresa),sala(Sala,terrorifica(_,_))).
+   esSalaDe(_, Empresa),
+   forall(esSalaDe(Sala, Empresa),sala(Sala,terrorifica(_,_))).
+
+%esMacabra(Empresa):-
+ %   esSalaDe(_, Empresa),
+  %  not((esSalaDe(Sala, Empresa),not(sala(Sala,terrorifica(_,_))))).
 
 %empresaCopada/1: una empresa es copada si no es macabra y el promedio de dificultad de sus salas es menor
 %a 4.
@@ -100,4 +105,19 @@ promedioDificultades(Empresa,Promedio):-
     cantidadDeSalas(Empresa,Cantidad),
     cantidadDeDificultad(Empresa,Dificultad),
     Promedio is (Dificultad/Cantidad).
+
+%La empresa supercelula es dueña de salas de escape familiares ambientadas en videojuegos. 
+%La sala estrellasDePelea cuenta con 7 habitaciones 
+%pero lamentablemente no sabemos la cantidad que tiene su nueva sala choqueDeLaRealeza.
+
+esSalaDe(supercelula,estrellasDePelea).
+sala(estrellasDePelea, familiar(videojuegos, 7)).
+esSalaDe(supercelula,choqueDeLaRealeza).
+
+%La empresa SKPista (fanática de un famoso escritor) es la dueña de una única sala
+%terrorífica para mayores de 21
+%llamada miseriaDeLaNoche que nos asegura 150 sustos.
+esSalaDe(SKPista,miseriaDeLaNoche).
+sala(miseriaDeLaNoche, terrorifica(150, 21)).
+
 
