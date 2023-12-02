@@ -13,6 +13,7 @@ esSalaDe(fundacionDelMulo, escapepepe).
 esSalaDe(estrellasDePelea,supercelula). %PUNTO 6
 esSalaDe(choqueDeLaRealeza,supercelula). %PUNTO 6
 esSalaDe(miseriaDeLaNoche,sKPista). %PUNTO 6
+esSalaDe(facil,facilin).%la agrego para hacer test
 
 %terrorifica(CantidadDeSustos, EdadMinima).
 %familiar(Tematica, CantidadDeHabitaciones).
@@ -21,7 +22,8 @@ esSalaDe(miseriaDeLaNoche,sKPista). %PUNTO 6
 %sala(Nombre, Experiencia).
 sala(elPayasoExorcista, terrorifica(100, 18)).
 sala(socorro, terrorifica(20, 12)).
-sala(linternas, familiar(comics, 1)).
+sala(linternas, familiar(comics, 5)).
+sala(facil,familiar(videojuegos,1)). %la agrego para hacer test
 sala(guerrasEstelares, familiar(futurista, 7)).
 sala(fundacionDelMulo, enigmatica([combinacionAlfanumerica, deLlave, deBoton])).
 sala(estrellasDePelea, familiar(videojuegos, 7)). %PUNTO 6
@@ -111,8 +113,8 @@ promedioDificultades(Empresa,Promedio):-
 
 %La empresa supercelula es dueña de salas de escape familiares ambientadas en videojuegos. 
 %La sala estrellasDePelea cuenta con 7 habitaciones 
-%pero lamentablemente no sabemos la cantidad que tiene su nueva sala choqueDeLaRealeza.
+%pero lamentablemente no sabemos la cantidad que tiene su nueva sala choqueDeLaRealeza. no la agrego en la clausula sala
 %La empresa SKPista (fanática de un famoso escritor) es la dueña de una única sala
 %terrorífica para mayores de 21
 %llamada miseriaDeLaNoche que nos asegura 150 sustos.
-%La nueva empresa que se suma a esta gran familia es Vertigo, pero aún no cuenta con salas.
+%La nueva empresa que se suma a esta gran familia es Vertigo, pero aún no cuenta con salas. no la agrego 
