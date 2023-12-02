@@ -80,12 +80,13 @@ tieneSuerte(Persona,Sala):-
 
 
 %esMacabra/1: una empresa es macabra si todas sus salas son de experiencia terrorífica.
-esMacabra(Empresa):-
-   esSalaDe(_, Empresa),
-   forall(esSalaDe(Sala, Empresa),sala(Sala,terrorifica(_,_))).
 %esMacabra(Empresa):-
-    %esSalaDe(_, Empresa),
-   %not((esSalaDe(Sala, Empresa),not(sala(Sala,terrorifica(_,_))))).
+   %esSalaDe(_, Empresa),
+   %forall(esSalaDe(Sala, Empresa),sala(Sala,terrorifica(_,_))).
+
+esMacabra(Empresa):-
+    esSalaDe(_, Empresa),
+   not((esSalaDe(Sala, Empresa),not(sala(Sala,terrorifica(_,_))))).
 
 %empresaCopada/1: una empresa es copada si no es macabra y el promedio de dificultad de sus salas es menor
 %a 4.
